@@ -90,16 +90,16 @@ source .venv/bin/activate
 pip install -e ".[dev]"
 ```
 
-Set environment variables and start:
+Copy the example env file and edit it:
 
 ```bash
-# Required: PostgreSQL connection string
-export PGAGENT_PG_DSN="postgresql://pgagent:pgagent@localhost:5433/demo"
+cp .env.example .env
+# Edit .env — at minimum set PGAGENT_PG_DSN and optionally PGAGENT_GROQ_API_KEY
+```
 
-# Optional: enables LLM-powered index recommendations
-export PGAGENT_GROQ_API_KEY="gsk_..."
+The defaults in `.env.example` point at the demo database (`localhost:5433/demo`). If you're using the demo, you can start right away:
 
-# Start the agent
+```bash
 pgagent
 ```
 

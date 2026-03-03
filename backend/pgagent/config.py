@@ -1,10 +1,22 @@
-"""Configuration via environment variables with PGAGENT_ prefix."""
+"""Configuration via environment variables with PGAGENT_ prefix.
 
-from pydantic_settings import BaseSettings
+Loads from backend/.env file automatically, then environment variables override.
+"""
+
+from pathlib import Path
+
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+_ENV_FILE = Path(__file__).resolve().parent.parent / ".env"
 
 
 class Settings(BaseSettings):
-    model_config = {"env_prefix": "PGAGENT_"}
+    model_config = SettingsConfigDict(
+        env_prefix="PGAGENT_",
+        env_file=str(_ENV_FILE),
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
     # PostgreSQL connection
     pg_dsn: str = "postgresql://localhost:5432/postgres"
