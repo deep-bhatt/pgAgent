@@ -145,13 +145,23 @@ Configure observation interval, detection thresholds, auto-approval policy, LLM 
 
 ## Configuration
 
-All settings use environment variables with the `PGAGENT_` prefix. Key options:
+All configuration lives in `backend/.env`. Copy the example file to get started:
+
+```bash
+cd backend
+cp .env.example .env
+```
+
+The `.env` file is loaded automatically on startup. Environment variables with the `PGAGENT_` prefix can also be set directly and will override `.env` values.
+
+### Reference
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `PGAGENT_PG_DSN` | `postgresql://localhost:5432/postgres` | PostgreSQL connection string |
+| `PGAGENT_PG_DSN` | `postgresql://pgagent:pgagent@localhost:5433/demo` | PostgreSQL connection string |
 | `PGAGENT_GROQ_API_KEY` | *(empty)* | Groq API key for LLM features |
 | `PGAGENT_LLM_MODEL` | `llama-3.3-70b-versatile` | LLM model for index recommendations |
+| `PGAGENT_LLM_TIMEOUT_SECONDS` | `30` | LLM request timeout |
 | `PGAGENT_OBSERVE_INTERVAL_SECONDS` | `60` | Seconds between observation cycles |
 | `PGAGENT_DEAD_TUPLE_RATIO_THRESHOLD` | `0.05` | Dead tuple ratio to trigger vacuum suggestion |
 | `PGAGENT_SEQ_SCAN_RATIO_THRESHOLD` | `0.5` | Seq scan ratio to flag tables |
@@ -165,7 +175,7 @@ All settings use environment variables with the `PGAGENT_` prefix. Key options:
 | `PGAGENT_API_PORT` | `8420` | API server port |
 | `PGAGENT_SIDECAR_DB_PATH` | `pgagent_sidecar.db` | SQLite database file path |
 
-All settings can also be changed at runtime through the Settings page or `PUT /api/config`.
+See `backend/.env.example` for the full list with comments. All settings can also be changed at runtime through the Settings page or `PUT /api/config`.
 
 ## API Reference
 
@@ -240,15 +250,16 @@ Before executing any suggestion, the validator enforces:
 
 ## Running Tests
 
+Run from the project root with the backend venv activated:
+
 ```bash
-cd backend
-source .venv/bin/activate
+source backend/.venv/bin/activate
 
 # Unit tests (no PostgreSQL required)
 pytest tests/test_unit/ -v
 
 # Integration tests (requires demo PostgreSQL running)
-cd ../demo && docker compose up -d && cd ../backend
+cd demo && docker compose up -d && cd ..
 pytest tests/test_integration/ -v
 
 # All tests
