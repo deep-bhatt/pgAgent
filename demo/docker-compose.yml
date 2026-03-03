@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: pgagent-demo-pg
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: pgagent
+      POSTGRES_PASSWORD: pgagent
+      POSTGRES_DB: demo
+    volumes:
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+      - pgdata:/var/lib/postgresql/data
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pgagent -d demo"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:
