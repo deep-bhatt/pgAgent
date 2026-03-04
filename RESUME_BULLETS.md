@@ -16,8 +16,8 @@
 
 ## One-Liner Version (Google Docs — Calibri 11, 0.4" margins)
 
-- Built pgAgent, a full-stack PostgreSQL agent with Python/FastAPI, React 19, and WebSocket dashboard
-- Designed a 6-stage agentic pipeline with 7 safety checks, rate limiting, and automatic rollback
-- Integrated Groq LLM (Llama 3.3-70b) for smart index recommendations with circuit-breaker fallback
-- Built React 19 dashboard with TanStack Query, WebSocket channels, Recharts, and Tailwind CSS v4
-- Engineered pytest suite for 11 rules and 7 validators with Docker-based 810K-row PostgreSQL demo
+- Built pgAgent, an autonomous PostgreSQL optimization agent with Python/FastAPI, React 19, and WebSockets
+- Designed a 6-stage agentic pipeline with 7 safety checks, mutation guards, rate limiting, and auto-rollback
+- Integrated Groq LLM (Llama 3.3-70b) for index recommendations on slow queries with circuit-breaker fallback
+- Developed real-time React 19 dashboard with TanStack Query, WebSocket channels, Recharts, and Tailwind v4
+- Engineered comprehensive pytest suite for 11 detection rules and 7 validators with 810K-row PostgreSQL demo
