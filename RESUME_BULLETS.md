@@ -11,3 +11,13 @@
 - **Developed a real-time React dashboard with 5 pages** (Overview, Suggestions, History, Query Analysis, Settings) using TanStack Query for server state management, WebSocket channels for live metric/suggestion/action updates, Recharts for time-series visualization, and Tailwind CSS v4 for a responsive dark-themed UI.
 
 - **Engineered a comprehensive test suite and Docker-based demo environment** with pytest unit tests covering all 11 detection rules, 7 safety validators, and the suggestion lifecycle state machine, plus integration tests against a seeded 810K-row PostgreSQL 16 database with a multi-scenario workload simulator for reproducing real-world performance issues.
+
+---
+
+## One-Liner Version (Google Docs — Calibri 11, 0.4" margins)
+
+- Built pgAgent, a full-stack PostgreSQL agent with Python/FastAPI, React 19, and WebSocket dashboard
+- Designed a 6-stage agentic pipeline with 7 safety checks, rate limiting, and automatic rollback
+- Integrated Groq LLM (Llama 3.3-70b) for smart index recommendations with circuit-breaker fallback
+- Built React 19 dashboard with TanStack Query, WebSocket channels, Recharts, and Tailwind CSS v4
+- Engineered pytest suite for 11 rules and 7 validators with Docker-based 810K-row PostgreSQL demo
